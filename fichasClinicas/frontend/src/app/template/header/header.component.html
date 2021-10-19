@@ -1,0 +1,14 @@
+<mat-toolbar class="topo">
+
+<button mat-icon-button color="primary" class="menu" (click)="navToggle()">  
+    <mat-icon>{{ toggleNav? 'chevron_left' :'expand_more'}}</mat-icon>
+  </button>
+  
+<span routerLink=''> Clínica Bem Estar</span>
+
+
+<mat-icon>logout</mat-icon>
+
+</mat-toolbar>
+
+<app-nav [btnToggle]="toggleNav"></app-nav>

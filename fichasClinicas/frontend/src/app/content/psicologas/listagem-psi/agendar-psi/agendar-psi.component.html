@@ -1,0 +1,44 @@
+<mat-card class="card">
+    <form *ngIf="psicologas !== undefined">
+    <mat-card-title>Agende um horário</mat-card-title>
+      <mat-form-field appearance="fill">
+          <mat-label>Escolha a data</mat-label>
+          <input matInput [(ngModel)]="paciente.diaConsulta" name="dia" [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+        </mat-form-field>
+  
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Escolha o Horário</mat-label>
+          <input type="time" matInput [(ngModel)]="paciente.hora" 
+          name="horario">
+        </mat-form-field>
+        <hr>
+  
+
+        <br>
+        <mat-slide-toggle class="togglebtn" [(ngModel)]="paciente.remediosControlados" name="remedios">
+           Remedios Controlados?
+        </mat-slide-toggle>
+        
+  
+        <hr>
+        <mat-form-field appearance="fill" style="width: 70%;">
+          <mat-select [(ngModel)]="paciente.idPsicologa" name="psicologa" 
+          placeholder="Selecione o(a) psicóloga">
+            <mat-option *ngFor="let psicologa of psicologas" [value]="psicologa.id">
+              {{ psicologa.nome }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+  
+      <button mat-raised-button (click)="agendar()" color="primary">Agendar</button>
+  </mat-card>
+  
+  <div class="btn">
+    <button mat-raised-button color="warn" (click)="back()">Voltar</button>
+    </div>
+  
+

@@ -1,0 +1,14 @@
+<nav mat-tab-nav-bar mat-align-tabs="center" animationDuration="1000ms">
+    <a mat-tab-link routerLink='cadastro' routerLinkActive #rla="routerLinkActive" 
+    [active]="rla.isActive">Cadastro de ficha do paciente</a>
+
+    <a mat-tab-link routerLink='listagem' routerLinkActive #rla1="routerLinkActive" 
+    [active]="rla1.isActive">Listagem</a>
+
+    <a mat-tab-link routerLink='reativar' routerLinkActive #rla2="routerLinkActive" 
+    [active]="rla2.isActive">Reativar ficha</a>
+  </nav>
+  <span class="content">
+    <router-outlet></router-outlet>
+  </span>
+

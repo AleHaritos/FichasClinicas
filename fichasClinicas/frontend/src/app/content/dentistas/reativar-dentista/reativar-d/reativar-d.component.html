@@ -1,0 +1,35 @@
+<mat-card class="card" *ngIf="paciente !==undefined">
+    <mat-card-title class="title">Reativar Paciente</mat-card-title>
+    
+    <span class="bloco">
+        <mat-form-field appearance="fill" style="width: 70%;">
+            <mat-label>Nome:</mat-label>
+            <input type="text" matInput readonly="readonly" name="nome" [(ngModel)]="paciente.nome">
+        </mat-form-field>
+    </span>
+
+    <span class="bloco">
+        <mat-form-field appearance="fill" style="width: 40%;">
+            <mat-label>CPF:</mat-label>
+            <input type="text" matInput readonly="readonly" name="cpf" [(ngModel)]="paciente.cpf">
+        </mat-form-field>
+    </span>
+
+    <span class="bloco">
+        <mat-form-field appearance="fill" style="width: 70%;">
+            <mat-label>Email:</mat-label>
+            <input type="text" matInput readonly="readonly" name="email" [(ngModel)]="paciente.email">
+        </mat-form-field>
+    </span>
+
+    <span class="bloco">
+        <mat-form-field appearance="fill" style="width: 40%;">
+            <mat-label>Número:</mat-label>
+            <input type="text" matInput readonly="readonly" name="numero" [(ngModel)]="paciente.numero">
+        </mat-form-field>
+    </span>
+
+    <div class="btn">
+        <button mat-raised-button color="accent" (click)="reativar()">Reativar</button>
+    </div>
+</mat-card>

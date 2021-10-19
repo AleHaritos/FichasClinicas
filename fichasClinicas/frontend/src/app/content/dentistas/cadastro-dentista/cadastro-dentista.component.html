@@ -1,0 +1,62 @@
+<mat-card class="card">
+    <mat-card-header class="header">
+        <mat-card-title class="title">Cadastro de pacientes</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="myGroup">
+        <mat-form-field style="width: 70%;" appearance="fill">
+        <mat-label>Nome:</mat-label>
+        <input matInput type="text" formControlName="nome" 
+        placeholder="Nome..." />
+        <mat-error *ngIf="myGroup.invalid">
+            Nome inválido
+          </mat-error>
+          <mat-error *ngIf="myGroup.invalid">
+            Nome é <strong>obrigatório</strong>
+          </mat-error>
+    </mat-form-field>
+
+    <mat-form-field  style="width: 70%;" appearance="fill">
+        <mat-label>Email:</mat-label>
+        <input matInput type="email" formControlName="email" 
+        placeholder="Ex: joaosilva@gmail.com"  name="email"/>
+        <mat-error *ngIf="myGroup.invalid">
+            Email inválido
+          </mat-error>
+          <mat-error *ngIf="myGroup.invalid">
+            Email é <strong>obrigatório</strong>
+          </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>CPF:</mat-label>
+        <input matInput type="text" formControlName="cpf" minlength="11" maxlength="11" 
+        placeholder="Ex: 55224408876" name="cpf"/>
+        <mat-hint align="end">Sem traços ou pontos</mat-hint>
+        <mat-error *ngIf="myGroup.invalid">
+            CPF inválido
+          </mat-error>
+          <mat-error *ngIf="myGroup.invalid">
+            CPF é <strong>obrigatório</strong>
+          </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Número:</mat-label>
+        <input matInput type="text" formControlName="numero"
+        placeholder="Ex: 11955554444" minlength="9" name="numero"/>
+        <mat-error *ngIf="myGroup.invalid">
+            Número inválido
+          </mat-error>
+          <mat-error *ngIf="myGroup.invalid">
+            Número é <strong>obrigatório</strong>
+          </mat-error>
+    </mat-form-field>
+     
+</form>
+    <div class="btn">
+    <button mat-raised-button (click)="confimarInsert()" color="accent">Cadastrar</button>
+    </div>
+    </mat-card-content>
+</mat-card>
+

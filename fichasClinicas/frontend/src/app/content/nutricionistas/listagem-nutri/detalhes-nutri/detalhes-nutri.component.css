@@ -1,0 +1,18 @@
+.card {
+width: 50vw;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.bloco {
+    margin: 10px 15px;
+}
+
+.btn {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}

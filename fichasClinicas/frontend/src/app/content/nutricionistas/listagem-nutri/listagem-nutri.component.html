@@ -1,0 +1,295 @@
+<!-- Card Inicial -->
+<mat-card *ngIf="showTableAll !== true && showTableCPF !== true && showTableDate !== true">
+  <mat-card-header>
+    <mat-card-title>Escolha os filtros</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="myGroup">
+      <mat-form-field appearance="fill">
+        <mat-label>Pesquisar por CPF</mat-label>
+        <input type="text" 
+         maxlength="11" minlength="11" matInput placeholder="Ex: 12345678911"
+        formControlName="cpfControl">
+        <mat-error *ngIf="myGroup.invalid">
+          CPF inválido
+        </mat-error>
+      </mat-form-field>
+    </form>
+    <div class="btncontainer">
+      <button mat-raised-button color="primary" (click)="iniciarTabelaCPF()">Pesquisar</button>
+    </div>
+    <hr>
+      <mat-form-field appearance="fill">
+        <mat-label>Escolha a data</mat-label>
+        <input matInput [(ngModel)]="dia" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div class="btncontainer">
+      <button mat-raised-button (click)="consultarPorData()"color="primary">Pesquisar</button>
+    </div>
+    <hr>
+    <div class="btncontainer">
+      <h4>Pesquisar por todos os dados</h4>
+      <button mat-raised-button color="primary" (click)=" iniciarTabelaGeral()">Pesquisar Todos</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+
+<!-- Tabela Geral -->
+<div *ngIf="showTableAll">
+<table *ngIf="dataSource !== undefined" class="mat-elevation-z8" mat-table [dataSource]="dataSource">
+
+
+<!-- Coluna ID -->
+<ng-container matColumnDef="id">
+  <th mat-header-cell *matHeaderCellDef> ID </th>
+  <td mat-cell *matCellDef="let paciente"> 
+      <span class="space">
+          {{ paciente.id }} 
+      </span> 
+  </td>
+    </ng-container>
+  
+    <!-- Coluna nome -->
+    <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let paciente"> 
+            <span class="space">
+                {{ paciente.nome }} 
+            </span> 
+        </td>
+      </ng-container>
+    
+      <!-- Coluna email -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let paciente"> 
+            <span class="space">
+            {{ paciente.email }} 
+            </span>  
+    </td>
+      </ng-container>
+    
+      <!-- Coluna cpf -->
+      <ng-container matColumnDef="cpf">
+        <th mat-header-cell *matHeaderCellDef> Cpf </th>
+        <td mat-cell *matCellDef="let paciente">
+            <span class="space">
+                {{ paciente.cpf }} 
+                </span>  
+         </td>
+      </ng-container>
+    
+      <!-- Coluna mais  -->
+      <ng-container matColumnDef="mais">
+        <th mat-header-cell *matHeaderCellDef> Detalhes </th>
+        <td mat-cell *matCellDef="let paciente"> 
+            <a routerLink="/nutricionistas/detalhes/{{ paciente.id }}" class="space detalhes">
+            <mat-icon>info</mat-icon>
+            </a>
+        </td>
+      </ng-container>
+
+      <!-- Coluna agendar  -->
+      <ng-container matColumnDef="agendar">
+        <th mat-header-cell *matHeaderCellDef>Agendar</th>
+        <td mat-cell *matCellDef="let paciente"> 
+            <a routerLink="/nutricionistas/agendar/{{ paciente.id }}" class="space agendar">
+            <mat-icon>date_range</mat-icon>
+            </a>
+        </td>
+      </ng-container>
+
+      <!-- Coluna delete  -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Excluir </th>
+        <td mat-cell *matCellDef="let paciente"> 
+            <a routerLink="/nutricionistas/delete/{{ paciente.id }}" class="excluir">
+            <mat-icon>delete</mat-icon>
+            </a>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25]"
+                   showFirstLastButtons 
+                   aria-label="Selecione a página dos pacientes">
+</mat-paginator>
+</div>
+
+
+<!-- Tabela CPF -->
+<div *ngIf="showTableCPF">
+  <table *ngIf="dataSource !== undefined" class="mat-elevation-z8" mat-table [dataSource]="dataSource">
+
+    <!-- Coluna ID -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let paciente"> 
+          <span class="space">
+              {{ paciente.id }} 
+          </span> 
+      </td>
+        </ng-container>
+
+      <!-- Coluna nome -->
+      <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef> Nome </th>
+          <td mat-cell *matCellDef="let paciente"> 
+              <span class="space">
+                  {{ paciente.nome }} 
+              </span> 
+          </td>
+        </ng-container>
+      
+        <!-- Coluna email -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let paciente"> 
+              <span class="space">
+              {{ paciente.email }} 
+              </span>  
+      </td>
+        </ng-container>
+      
+        <!-- Coluna cpf -->
+        <ng-container matColumnDef="cpf">
+          <th mat-header-cell *matHeaderCellDef> Cpf </th>
+          <td mat-cell *matCellDef="let paciente">
+              <span class="space">
+                  {{ paciente.cpf }} 
+                  </span>  
+           </td>
+        </ng-container>
+      
+        <!-- Coluna mais  -->
+        <ng-container matColumnDef="mais">
+          <th mat-header-cell *matHeaderCellDef> Detalhes </th>
+          <td mat-cell *matCellDef="let paciente"> 
+              <a routerLink="/nutricionistas/detalhes/{{ paciente.id }}" class="space detalhes">
+              <mat-icon>info</mat-icon>
+              </a>
+          </td>
+        </ng-container>
+  
+        <!-- Coluna agendar  -->
+        <ng-container matColumnDef="agendar">
+          <th mat-header-cell *matHeaderCellDef>Agendar</th>
+          <td mat-cell *matCellDef="let paciente"> 
+              <a routerLink="/nutricionistas/agendar/{{ paciente.id }}" class="space agendar">
+              <mat-icon>date_range</mat-icon>
+              </a>
+          </td>
+        </ng-container>
+  
+        <!-- Coluna delete  -->
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef> Excluir </th>
+          <td mat-cell *matCellDef="let paciente"> 
+              <a routerLink="/nutricionistas/delete/{{ paciente.id }}" class="excluir">
+              <mat-icon>delete</mat-icon>
+              </a>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[1]"
+                     showFirstLastButtons 
+                     aria-label="Selecione a página dos pacientes">
+  </mat-paginator>
+  </div>
+
+
+  <!-- Tabela Date -->
+<div *ngIf="showTableDate">
+  <table *ngIf="dataSource !== undefined" class="mat-elevation-z8" mat-table [dataSource]="dataSource">
+  
+  <!-- Coluna ID -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let paciente"> 
+        <span class="space">
+            {{ paciente.id }} 
+        </span> 
+    </td>
+      </ng-container>
+    
+      <!-- Coluna nome -->
+      <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef> Nome </th>
+          <td mat-cell *matCellDef="let paciente"> 
+              <span class="space">
+                  {{ paciente.nome }} 
+              </span> 
+          </td>
+        </ng-container>
+      
+        <!-- Coluna dia -->
+        <ng-container matColumnDef="dia">
+          <th mat-header-cell *matHeaderCellDef> Dia </th>
+          <td mat-cell *matCellDef="let paciente"> 
+              <span class="space">
+              {{ paciente.diaConsulta | date: 'dd/MM/yyyy'}} 
+              </span>  
+      </td>
+        </ng-container>
+      
+        <!-- Coluna hora -->
+        <ng-container matColumnDef="hora">
+          <th mat-header-cell *matHeaderCellDef> Hora </th>
+          <td mat-cell *matCellDef="let paciente">
+              <span class="space">
+                  {{ paciente.hora }} 
+                  </span>  
+           </td>
+        </ng-container>
+      
+        <!-- Coluna mais  -->
+        <ng-container matColumnDef="mais">
+          <th mat-header-cell *matHeaderCellDef> Detalhes </th>
+          <td mat-cell *matCellDef="let paciente"> 
+              <a routerLink="/nutricionistas/detalhes/{{ paciente.id }}" class="space detalhes">
+              <mat-icon>info</mat-icon>
+              </a>
+          </td>
+        </ng-container>
+  
+        <!-- Coluna agendar  -->
+        <ng-container matColumnDef="agendar">
+          <th mat-header-cell *matHeaderCellDef>Agendar</th>
+          <td mat-cell *matCellDef="let paciente"> 
+              <a routerLink="/nutricionistas/agendar/{{ paciente.id }}" class="space agendar">
+              <mat-icon>date_range</mat-icon>
+              </a>
+          </td>
+        </ng-container>
+  
+        <!-- Coluna delete  -->
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef> Excluir </th>
+          <td mat-cell *matCellDef="let paciente"> 
+              <a routerLink="/nutricionistas/delete/{{ paciente.id }}" class="excluir">
+              <mat-icon>delete</mat-icon>
+              </a>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]"
+                     showFirstLastButtons 
+                     aria-label="Selecione a página dos pacientes">
+  </mat-paginator>
+  </div>
+
+  <div class="backButton" *ngIf="showTableAll === true || showTableCPF === true || showTableDate === true">
+    <button mat-raised-button color="warn" (click)="back()">Voltar</button>
+  </div>
+  

@@ -1,0 +1,17 @@
+.sidenav {
+    width: 150px;
+}
+
+.content {
+    background-color: #FFF;
+    color: #000;
+}
+
+.mat-drawer-container {
+    background-color: #212121;
+    color: #fff;
+}
+
+.list a:hover {
+    background-color: rgba(34, 32, 33, 0.616);
+}

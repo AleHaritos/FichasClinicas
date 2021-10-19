@@ -1,0 +1,48 @@
+<mat-card class="card">
+    <form *ngIf="dentistas !== undefined">
+    <mat-card-title>Agende um horário</mat-card-title>
+      <mat-form-field appearance="fill">
+          <mat-label>Escolha a data</mat-label>
+          <input matInput [(ngModel)]="paciente.diaConsulta" name="dia" [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+        </mat-form-field>
+  
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Escolha o Horário</mat-label>
+          <input type="time" matInput [(ngModel)]="paciente.hora" 
+          name="horario">
+        </mat-form-field>
+        <hr>
+  
+        <mat-form-field appearance="fill" style="width: 70%;">
+            <mat-label>Endereço:</mat-label>
+            <input matInput type="text" [(ngModel)]="paciente.endereco" 
+            placeholder="Endereco..."  name="endereco" maxlength="150"/>
+        </mat-form-field>
+
+        <br>
+        <mat-slide-toggle class="togglebtn" [(ngModel)]="paciente.fumante" name="fumante">
+            Fumante?
+        </mat-slide-toggle>
+        
+  
+        <hr>
+        <mat-form-field appearance="fill" style="width: 70%;">
+          <mat-select [(ngModel)]="paciente.idDentista" name="dentista" 
+          placeholder="Selecione o(a) dentista">
+            <mat-option *ngFor="let dentista of dentistas" [value]="dentista.id">
+              {{ dentista.nome }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+  
+      <button mat-raised-button (click)="agendar()" color="primary">Agendar</button>
+  </mat-card>
+  
+  <div class="btn">
+    <button mat-raised-button color="warn" (click)="back()">Voltar</button>
+    </div>
+  

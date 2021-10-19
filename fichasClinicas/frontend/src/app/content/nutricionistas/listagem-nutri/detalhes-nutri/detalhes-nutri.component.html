@@ -1,0 +1,118 @@
+<mat-card class="card" *ngIf="nutriNome !== undefined">
+    <mat-card-title class="title">Detalhes do Paciente</mat-card-title>
+
+    <span class="bloco">
+        <mat-form-field appearance="fill" style="width: 70%;">
+            <mat-label>Nome:</mat-label>
+            <input type="text" matInput readonly="readonly" name="nome" [(ngModel)]="paciente.nome">
+        </mat-form-field>
+    </span>
+
+    <span class="bloco">
+        <mat-form-field appearance="fill" style="width: 70%;">
+            <mat-label>CPF:</mat-label>
+            <input type="text" matInput readonly="readonly" name="cpf" [(ngModel)]="paciente.cpf">
+        </mat-form-field>
+    </span>
+
+    <span class="bloco">
+        <mat-form-field appearance="fill" style="width: 70%;">
+            <mat-label>Email:</mat-label>
+            <input type="text" matInput readonly="readonly" name="email" [(ngModel)]="paciente.email">
+        </mat-form-field>
+    </span>
+
+    <span class="bloco">
+        <mat-form-field appearance="fill">
+            <mat-label>Dia da Consulta:</mat-label>
+            <input type="text" matInput readonly="readonly" name="dia"
+                [ngModel]="paciente.diaConsulta | date: 'dd/MM/yyyy'"
+                (ngModelChange)="paciente.diaConsulta.value=$event">
+        </mat-form-field>
+    </span>
+
+    <span class="bloco">
+        <mat-form-field appearance="fill">
+            <mat-label>Horário:</mat-label>
+            <input type="text" matInput readonly="readonly" name="hora" [(ngModel)]="paciente.hora">
+        </mat-form-field>
+    </span>
+
+    <span class="bloco">
+        <mat-form-field appearance="fill">
+            <mat-label>Número:</mat-label>
+            <input type="text" matInput readonly="readonly" name="numero" [(ngModel)]="paciente.numero">
+        </mat-form-field>
+    </span>
+
+    <span class="bloco">
+        <mat-form-field appearance="fill">
+            <mat-label>Massa Magra:</mat-label>
+            <input type="text" matInput readonly="readonly" name="massaMagra" 
+            [(ngModel)]="paciente.massaMagra">
+        </mat-form-field>
+    </span>
+
+    <span class="bloco">
+        <mat-form-field appearance="fill">
+            <mat-label>Gordura corporal:</mat-label>
+            <input type="text" matInput readonly="readonly" name="gordura" [(ngModel)]="paciente.gorduraCorporal">
+        </mat-form-field>
+    </span>
+
+    <span class="bloco">
+        <mat-form-field appearance="fill">
+            <mat-label>Peso corporal:</mat-label>
+            <input type="text" matInput readonly="readonly" name="pesoCorporal" 
+            [(ngModel)]="paciente.pesoCorporal">
+        </mat-form-field>
+    </span> 
+
+     <span class="bloco">
+        <mat-form-field appearance="fill" style="width: 70%;">
+            <mat-label>Nome Nutricionista:</mat-label>
+            <input type="text" matInput readonly="readonly" name="nomeNutri" 
+            [(ngModel)]="nutriNome">
+        </mat-form-field>
+    </span>
+</mat-card>
+
+
+<mat-card class="card" *ngIf="nutriNome === undefined && paciente !== undefined">
+    <mat-card-title class="title">Detalhes do Paciente</mat-card-title>
+
+    <span class="bloco">
+        <mat-form-field appearance="fill" style="width: 70%;">
+            <mat-label>Nome:</mat-label>
+            <input type="text" matInput readonly="readonly" name="nome" [(ngModel)]="paciente.nome">
+        </mat-form-field>
+    </span>
+
+    <span class="bloco">
+        <mat-form-field appearance="fill" style="width: 70%;">
+            <mat-label>CPF:</mat-label>
+            <input type="text" matInput readonly="readonly" name="cpf" [(ngModel)]="paciente.cpf">
+        </mat-form-field>
+    </span>
+
+    <span class="bloco">
+        <mat-form-field appearance="fill" style="width: 70%;">
+            <mat-label>Email:</mat-label>
+            <input type="text" matInput readonly="readonly" name="email" [(ngModel)]="paciente.email">
+        </mat-form-field>
+    </span>
+
+
+    <span class="bloco">
+        <mat-form-field appearance="fill">
+            <mat-label>Número:</mat-label>
+            <input type="text" matInput readonly="readonly" name="numero" [(ngModel)]="paciente.numero">
+        </mat-form-field>
+    </span>
+
+</mat-card>
+
+
+<div class="btn">
+<button mat-raised-button color="warn" (click)="back()">Voltar</button>
+</div>

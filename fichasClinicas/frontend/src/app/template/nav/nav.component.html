@@ -1,0 +1,12 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" [opened]="btnToggle" fixedInViewport="true" fixedTopGap="60" class="sidenav">
+        <mat-nav-list class="list">
+            <a mat-list-item routerLink="/dentistas/cadastro">Dentista</a>
+            <a mat-list-item routerLink="/nutricionistas/cadastro">Nutricionista</a>
+            <a mat-list-item routerLink="/psicologas/cadastro">Psicóloga</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

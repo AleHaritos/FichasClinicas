@@ -1,0 +1,20 @@
+<!-- <div class="titulo">
+    <h1>Bem vindo ao sistema da Clínica Bem Estar</h1>
+</div> -->
+<div class="home">
+<mat-card class="card">
+    <mat-card-header class="titulos">
+        <mat-card-title>Bem vindo ao sistema da Clínica Bem Estar</mat-card-title>
+        <mat-card-subtitle>Começe a organizar suas fichas!</mat-card-subtitle>
+    </mat-card-header>
+    <hr>
+    <mat-card-content class="content">
+        <button mat-raised-button [color]="colorBar" routerLink="/dentistas/cadastro">Dentista</button>
+        <button mat-raised-button [color]="colorBar" routerLink="/nutricionistas/cadastro">Nutricionista</button>
+        <button mat-raised-button [color]="colorBar" routerLink="/psicologas/cadastro">Psicóloga</button>
+    </mat-card-content>
+    <mat-card-footer>
+        <mat-progress-bar mode="indeterminate" [color]="colorBar"></mat-progress-bar>
+      </mat-card-footer>
+</mat-card>
+</div>

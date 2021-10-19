@@ -1,0 +1,10 @@
+* {
+    background-color: #424242;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    background-color: #FFF;
+    margin-top: 10px;
+}
